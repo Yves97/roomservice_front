@@ -12,3 +12,15 @@ export const getRooms = async () => {
     const response = await fetch(rootApi,options)
     return await response
 }
+
+export const getRoom = async (id) =>{
+    const rootApi = `${baseUrl}suites/${id}`
+    const options = {
+        method : 'GET',
+        headers : {
+            'Content-Type' : 'application/json'
+        }
+    }
+    const response = await fetch(rootApi,options)
+    return await response
+}

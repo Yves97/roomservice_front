@@ -6,7 +6,8 @@ import { Home } from './views/home/Home';
 import {Login} from './views/login/Login';
 import {Register} from './views/register/Register';
 import {Contact} from './views/contact/Contact';
-import {Rooms} from './views/rooms/Rooms'
+import {Rooms} from './views/rooms/Rooms';
+import {RoomsDetails} from './views/rooms/Details';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path='/register' exact component={Register} />
       <Route path='/contact' exact component={Contact} />
       <Route path='/rooms' exact component={Rooms} />
+      <Route path='/rooms/:id' exact component={RoomsDetails} />
       <Route path='*' exact component={NotFound}/>
     </Switch>
   );
