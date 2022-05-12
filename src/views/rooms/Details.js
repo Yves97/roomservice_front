@@ -43,7 +43,9 @@ export const RoomsDetails = () => {
 
     const renderDetails = () => {
         if(loading) {
-            return <Loader/>
+            return <div className="w-full h-96 flex justify-center items-center">
+                <Loader/>
+            </div> 
         }
         else{
             if(room === null){

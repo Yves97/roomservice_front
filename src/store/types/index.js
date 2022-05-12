@@ -1,1 +1,8 @@
 export const SET_ROOMS = "SET_ROOMS"
+export const SET_AUTHENTICATED = "SET_AUTHENTICATED"
+export const SET_USER = "SET_USER"
+export const SET_TOKEN = "SET_TOKEN"
+export const LOGIN_START = "LOGIN_START"
+// export const LOGIN_ERROR = "LOGIN_ERROR"
+export const LOGIN_FAILED = "LOGIN_FAILED"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS"

@@ -35,11 +35,9 @@ export const Rooms = () => {
 
                 }else{
                     const error = response.json()
-                    console.log(error)
                     setLoading(false)
                 }
             } catch (error) {
-                console.log(error)
                 setLoading(false)
             }
         }
@@ -49,7 +47,10 @@ export const Rooms = () => {
 
     const renderRooms = () => {
         if(loading){
-            return  <Loader/>
+            return (
+            <div className="w-full h-96 flex justify-center items-center">
+                <Loader/>
+            </div>)
         }else{
             if(roomsState.rooms.length === 0){
                 return <p>Aucune chambre pour le moment</p>
