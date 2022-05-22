@@ -12,6 +12,8 @@ import { userLogin } from '../../store/actions/auth';
 
 
 export const Login = () => {
+
+    const history = useHistory()
     const [loading,setLoading] = useState(false)
     const [email,setEmail] = useState('')
     const [errorEmail,setErrorEmail] = useState(false)
@@ -24,11 +26,10 @@ export const Login = () => {
     const dispatch = useDispatch()
     const isAuth = useSelector((state) => state.auth.isAuth)
     const pending = useSelector((state) => state.auth.pending)
+    const errors = useSelector((state) => state.auth.errors)
     
-
     const signIn = async (e) => {
       e.preventDefault()
-
       if(!validateEmail(email)){
         return setErrorEmail(true)
       }else{
@@ -49,23 +50,13 @@ export const Login = () => {
         }
         await dispatch(userLogin(data))
         if(isAuth){
+            history.push('/')
           // redirect to home
         }
-
-        
-        // const response = await loginUser(data)
-        // if(response.ok){
-
-        // }else{
-        //   const error = response.json()
-        //   console.log('error',error)
-        //   // setError(true)
-
-        // }
         
         
       } catch (error) {
-        
+        console.log(error)
       }
 
     }
@@ -97,6 +88,7 @@ export const Login = () => {
                         {errorPassword && <p className='italic text-red-600'>Remplir ce champ*</p>}
                     </div>
                     {pending ? <Loader/> : <button onClick={signIn} className="text-violet-500 border border-violet-500 hover:bg-violet-500 hover:text-white active:bg-violet-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Se connecter</button>}
+                    {errors && <p className='text-red-600'>{errors}</p>}
                 </div> 
                 <div className="part-info p-8 h-64">
                     <img className='w-full h-full object-cover' src={Img} />

@@ -35,13 +35,15 @@ export const authReducer = (state = initialState,action) => {
             return {
                 ...state,
                 pending : false,
-                error : action.error
+                errors : action.error,
+                isAuth : false
             }
         case actionTypes.LOGIN_SUCCESS:
             return {
                 ...state,
                 pending : false,
-                success : action.success
+                success : action.success,
+                isAuth : true
             }
         default:
             return state

@@ -87,7 +87,7 @@ export const Register = () => {
             if(response.ok){
                 setLoading(false) 
                 setSuccess("Inscription reussi avec success !, vous serez redirigé a la page de connexion dans quelques secondes")
-                setTimeout(()=>{
+                setTimeout(() => {
                     history.push('/login')
                 },5000)
             }else{
