@@ -22,8 +22,8 @@ export const Dropdown = ({ color }) => {
     let bgColor;
     const dispatch = useDispatch()
     const logoutUser = (e) => {
-        e.preventDefault()
-        dispatch(logout())
+      e.preventDefault()
+      dispatch(logout())
     }
 
     return (
@@ -55,12 +55,11 @@ export const Dropdown = ({ color }) => {
                 style={{ minWidth: "12rem" }}
               >
                 <a
-                  href="#pablo"
                   className={
-                    "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
+                    "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent cursor-pointer hover:text-violet-500" +
                     (color === "white" ? " text-slate-700" : "text-white")
                   }
-                  onClick={() => logoutUser()}
+                  onClick={logoutUser}
                 >
                   Se deconnecter
                 </a>
@@ -85,7 +84,7 @@ export const Dropdown = ({ color }) => {
                   Something else here
                 </a> */}
                 <div className="h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-25" />
-                <a
+                {/* <a
                   href="#pablo"
                   className={
                     "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent " +
@@ -94,7 +93,7 @@ export const Dropdown = ({ color }) => {
                   onClick={e => e.preventDefault()}
                 >
                   Seprated link
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

@@ -9,6 +9,7 @@ export const setToken = token => ({type : actionTypes.SET_TOKEN,token})
 export const loginStart = () => ({type : actionTypes.LOGIN_START})
 export const loginFailed = error => ({type: actionTypes.LOGIN_FAILED,error})
 export const loginSuccess = success => ({type : actionTypes.LOGIN_SUCCESS,success})
+export const setUserAuth = value => ({type : actionTypes.SET_AUTHENTICATED,value})
 
 export const userLogin = (data) => {
     return async (dispatch) =>{
@@ -21,7 +22,7 @@ export const userLogin = (data) => {
                 const decodedToken = jwt_decode(data.accessToken)
                 console.log('decoded token',decodedToken)
                 dispatch(setUser(decodedToken))
-                dispatch(loginSuccess(''))
+                dispatch(loginSuccess('Connected'))
                 // dispatch(setAuthenticated(true))
                 dispatch(checkLoginState(decodedToken.exp))
             }else{
@@ -50,5 +51,7 @@ export const logout = () => {
         // dispatch(setAuthenticated(false))
         dispatch(setToken(null))
         dispatch(setUser(null))
+        dispatch(setUserAuth(false))
+        
     }
 }

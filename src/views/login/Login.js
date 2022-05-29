@@ -50,6 +50,7 @@ export const Login = () => {
         }
         await dispatch(userLogin(data))
         if(isAuth){
+            console.log('login success')
             history.push('/')
           // redirect to home
         }

@@ -1,5 +1,6 @@
-import {Switch,Route} from 'react-router-dom'
+import {Switch,Route,useHistory} from 'react-router-dom'
 import { useSelector } from 'react-redux';
+
 
 
 //pages
@@ -11,7 +12,7 @@ import {Rooms} from './views/rooms/Rooms';
 import {RoomsDetails} from './views/rooms/Details';
 
 function App() {
-  const isAuth = useSelector((state)=> state.auth.isAuth)
+  const isAuth = useSelector((state) => state.auth.isAuth)
   return (
     <Switch>
       <Route path="/" exact component={Home} />
