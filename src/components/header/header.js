@@ -50,6 +50,11 @@ export const Header = ({title}) => {
                                 Contacts
                             </Link>
                         </li>
+                        {isAuth && (
+                            <li className="nav-item">
+                                <Link to='/rooms' className='px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75'>Réserver</Link>
+                            </li>
+                        )}
                     </ul>
                     
                 </div>
