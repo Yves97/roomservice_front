@@ -1,6 +1,7 @@
-import {Switch,Route,useHistory} from 'react-router-dom'
-import { useSelector } from 'react-redux';
-
+import { useEffect } from 'react';
+import {Switch,Route,useHistory,Redirect} from 'react-router-dom'
+import { useSelector , useDispatch } from 'react-redux';
+import { trySignUp } from './store/actions/auth';
 
 
 //pages
@@ -10,9 +11,19 @@ import {Register} from './views/register/Register';
 import {Contact} from './views/contact/Contact';
 import {Rooms} from './views/rooms/Rooms';
 import {RoomsDetails} from './views/rooms/Details';
+import { Index } from './views/dashboard/Index';
+import {Admin} from './views/dashboard/home/Admin';
+
 
 function App() {
-  const isAuth = useSelector((state) => state.auth.isAuth)
+  const user = useSelector((state) => state.auth.user)
+  const dispatch = useDispatch()
+
+  useEffect(()=> {
+    dispatch(trySignUp())
+  },[])
+
+
   return (
     <Switch>
       <Route path="/" exact component={Home} />
@@ -21,7 +32,11 @@ function App() {
       <Route path='/contact' exact component={Contact} />
       <Route path='/rooms' exact component={Rooms} />
       <Route path='/rooms/:id' exact component={RoomsDetails} />
-      <Route path='*' exact component={NotFound}/>
+      <Route path='/roomservices/admin' exact component={Index}/>
+      <ProtectedRoutes whoIsConnected={user ?  user.role : ''}>
+          <Route path='/dashboard/home' exact component={Admin}/>
+      </ProtectedRoutes>
+      <Route path='*' exact component={NotFound} />
     </Switch>
   );
 }
@@ -31,6 +46,13 @@ function NotFound(){
   return (
     <h1>Not Found</h1>
   )
+}
+
+const ProtectedRoutes = ({whoIsConnected,children}) => {
+    if(whoIsConnected !== 'ADMIN'){
+      return <Redirect to='/' />
+    }
+    return children;
 }
 
 export default App;

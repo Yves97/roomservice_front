@@ -7,7 +7,7 @@ import { Dropdown } from '../dropdown/dropdown';
 
 export const Header = ({title}) => {
     const user = useSelector((state) => state.auth.user)
-    const isAuth = useSelector((state)=> state.auth.isAuth)
+    const isAuth = useSelector((state) => state.auth.isAuth)
 
     return (
         <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-violet-500">
@@ -27,19 +27,23 @@ export const Header = ({title}) => {
                     <ul className="flex flex-col items-center lg:flex-row list-none ml-auto">
                         {isAuth && (
                             <li className="nav-item">
-                                <p className='text-white'>Bonjour, Amani</p>
+                                <p className='text-white'>Bonjour, {user && user.name}</p>
                             </li>
                         )}
-                        <li className="nav-item">
-                            <Link to='/login' className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-                                Login
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/register" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-                                Register
-                            </Link>
-                        </li>
+                        {!isAuth && (
+                            <>
+                                <li className="nav-item">
+                                    <Link to='/login' className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+                                        Login
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                <Link to="/register" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+                                    Register
+                                </Link>
+                                </li>
+                            </>
+                        )}
                         <li className="nav-item">
                             <Link to="/rooms" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
                                 Rooms

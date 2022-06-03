@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useHistory,Redirect} from 'react-router-dom'
 import { useDispatch ,useSelector } from 'react-redux';
 import { Header } from "../../components/header/header";
 import { Footer } from "../../components/footer/footer";
@@ -7,8 +7,8 @@ import { Loader } from '../../components/loader/Loader';
 import Img from '../../assets/images/lobby-g97f686da4_1920.jpg'
 
 import { validateEmail, isEmptyOrWhiteSpace } from '../../helpers/validators';
-import { loginUser } from '../../services/auth';
 import { userLogin } from '../../store/actions/auth';
+
 
 
 export const Login = () => {
@@ -27,6 +27,7 @@ export const Login = () => {
     const isAuth = useSelector((state) => state.auth.isAuth)
     const pending = useSelector((state) => state.auth.pending)
     const errors = useSelector((state) => state.auth.errors)
+
     
     const signIn = async (e) => {
       e.preventDefault()
@@ -49,11 +50,12 @@ export const Login = () => {
           password
         }
         await dispatch(userLogin(data))
-        if(isAuth){
-            console.log('login success')
-            history.push('/')
-          // redirect to home
-        }
+        
+        // if(isAuth){
+        //     console.log('login success')
+        //     return history.push('/')
+        //   // redirect to home
+        // }
         
         
       } catch (error) {
@@ -62,8 +64,12 @@ export const Login = () => {
 
     }
 
-    return (
-        <>
+    const renderLogin = () => {
+        if(isAuth){
+            return <Redirect to='/' />
+        }
+        return (
+            <>
             <Header title={'Login'}/> 
             <div className="h-80 p-7">
                 <img src={Img} className='w-full h-full object-cover'/>
@@ -97,6 +103,15 @@ export const Login = () => {
             </section>
             <Footer/>
         </>
+        )
+
+    }
+
+    return (
+        <>
+            {renderLogin()}
+        </>
+       
     )
 }
 

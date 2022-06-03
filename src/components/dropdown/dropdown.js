@@ -3,6 +3,7 @@ import { createPopper } from "@popperjs/core";
 import { useDispatch } from "react-redux";
 
 import { logout } from "../../store/actions/auth";
+import { Redirect ,useHistory } from "react-router-dom";
 
 export const Dropdown = ({ color }) => {
     // dropdown props
@@ -21,9 +22,11 @@ export const Dropdown = ({ color }) => {
     // bg colors
     let bgColor;
     const dispatch = useDispatch()
+    const history = useHistory()
     const logoutUser = (e) => {
       e.preventDefault()
       dispatch(logout())
+      history.push('/login')
     }
 
     return (
@@ -43,7 +46,7 @@ export const Dropdown = ({ color }) => {
                     : openDropdownPopover()
                 }}
               >
-                {color === "white" ? "Options" : color + " Dropdown"}
+                {color === "white" ? "Actions" : color + " Dropdown"}
               </button>
               <div
                 ref={popoverDropdownRef}

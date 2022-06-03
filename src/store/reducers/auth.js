@@ -3,6 +3,7 @@ import * as actionTypes from '../types'
 const initialState = {
     user : null,
     token : null,
+    expToken : null,
     isAuth : false,
     pending : false,
     errors : null,
@@ -26,6 +27,11 @@ export const authReducer = (state = initialState,action) => {
                 ...state,
                 token : action.token
             }
+        case actionTypes.SET_EXPIRE_TOKEN:
+            return {
+                ...state,
+                expToken : action.expire
+            }
         case actionTypes.LOGIN_START:
             return {
                 ...state,
@@ -35,15 +41,13 @@ export const authReducer = (state = initialState,action) => {
             return {
                 ...state,
                 pending : false,
-                errors : action.error,
-                isAuth : false
+                errors : action.error
             }
         case actionTypes.LOGIN_SUCCESS:
             return {
                 ...state,
                 pending : false,
                 success : action.success,
-                isAuth : true
             }
         default:
             return state
