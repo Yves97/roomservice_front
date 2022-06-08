@@ -13,6 +13,12 @@ import {Rooms} from './views/rooms/Rooms';
 import {RoomsDetails} from './views/rooms/Details';
 import { Index } from './views/dashboard/Index';
 import {Admin} from './views/dashboard/home/Admin';
+import {DashboardRooms} from './views/dashboard/rooms/Rooms'
+import {Details} from './views/dashboard/rooms/Details'
+import {Update} from './views/dashboard/rooms/Update'
+import { CreateRoom } from './views/dashboard/rooms/Create';
+import {Reservations} from './views/dashboard/reservations/Reservations'
+
 
 
 function App() {
@@ -35,6 +41,10 @@ function App() {
       <Route path='/roomservices/admin' exact component={Index}/>
       <ProtectedRoutes whoIsConnected={user ?  user.role : ''}>
           <Route path='/dashboard/home' exact component={Admin}/>
+          <Route path='/dashboard/rooms' exact component={DashboardRooms}/>
+          <Route path='/dashboard/rooms/:id/details' exact component={Details}/>
+          <Route path='/dashboard/reservations' exact component={Reservations} />
+          <Route path='/dashboard/rooms/create' exact component={CreateRoom}/>
       </ProtectedRoutes>
       <Route path='*' exact component={NotFound} />
     </Switch>

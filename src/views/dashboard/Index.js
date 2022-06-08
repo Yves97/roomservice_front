@@ -21,8 +21,6 @@ export const Index = () => {
     const errors = useSelector((state) => state.auth.errors)
     const user = useSelector((state)=> state.auth.user)
 
-    console.log('user',user)
-
     const login = async (e) => {
         e.preventDefault()
 
@@ -106,7 +104,6 @@ export const Index = () => {
                         </div>
                         </div>
                     </div>
-                    
             </section>
         )
     }

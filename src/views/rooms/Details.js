@@ -13,12 +13,7 @@ import { baseUrl } from '../../config/base'
 import { useSelector } from 'react-redux'
 import { reserve } from '../../services/reservations'
 
-const durations = [
-    "1H",
-    "2H",
-    "4H",
-    "24H"
-]
+import { durations } from '../../helpers/common'
 
 export const RoomsDetails = () => {
     const [room,setRoom] = useState(null)

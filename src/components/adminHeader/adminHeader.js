@@ -1,7 +1,17 @@
 import React,{useState} from 'react'
+import { useSelector,useDispatch } from 'react-redux'
+
+import {logout} from '../../store/actions/auth'
 
 export const AdminHeader = () => {
     const [visible,setVisible] = useState(false)
+    const user = useSelector((state) => state.auth.user)
+
+    const dispatch = useDispatch()
+
+
+    const logoutUser = () => dispatch(logout())
+
     return (
         <header>
         <nav aria-label="menu nav" className="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
@@ -34,7 +44,7 @@ export const AdminHeader = () => {
                         <li className="flex-1 md:flex-none md:mr-3">
                             <div className="relative inline-block">
                                 <button onClick={() => setVisible(!visible)}  className="drop-button text-white py-2 px-2"> 
-                                    <span className="pr-2"><i className="em em-robot_face"></i></span> Hi, User 
+                                    <span className="pr-2"><i className="em em-robot_face"></i></span> Bonjour, {user.name} 
                                     <svg className="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                     </svg>
@@ -44,7 +54,7 @@ export const AdminHeader = () => {
                                     <a href="#" className="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i className="fa fa-user fa-fw"></i> Profile</a>
                                     <a href="#" className="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i className="fa fa-cog fa-fw"></i> Settings</a>
                                     <div className="border border-gray-800"></div>
-                                    <a href="#" className="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i className="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
+                                    <a onClick={logoutUser} className="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block cursor-pointer"><i className="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
                                 </div>
                             </div>
                         </li>

@@ -24,3 +24,24 @@ export const getRoom = async (id) =>{
     const response = await fetch(rootApi,options)
     return await response
 }
+
+export const createRoom = async (name,description,ranking,price,image,token) => {
+    const routeApi = `${baseUrl}suites`
+    const DATA = new FormData()
+    DATA.append('name',name)
+    DATA.append('price',price)
+    DATA.append('description',description)
+    DATA.append('ranking',ranking)
+    DATA.append('image',image)    
+
+    const options = {
+        method : 'POST',
+        body : DATA,
+        headers : {
+            'Authorization' : `Bearer ${token}`
+        }
+    }
+
+    const response = await fetch(routeApi,options)
+    return await response    
+}
