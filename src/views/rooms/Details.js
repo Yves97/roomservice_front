@@ -23,7 +23,7 @@ export const RoomsDetails = () => {
     
     const params = useParams()
 
-    const isAuth = useSelector((state)=> state.auth.isAuth)
+    const isAuth = useSelector((state) => state.auth.isAuth)
     const token = useSelector((state) => state.auth.token)
     const [pending,setPending] = useState(false)
     const [errorApi,setErrorApi] = useState(null)

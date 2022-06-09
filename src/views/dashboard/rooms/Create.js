@@ -78,10 +78,9 @@ export const CreateRoom = () => {
                 image,
                 token
             )
-            
             if(response.ok){
                 const data = await response.json()
-                console.log('created',data)
+                setErrorApi(null)
                 setSuccess("Chambre créée avec sucess")
                 setName('')
                 setPrice('')
@@ -100,11 +99,6 @@ export const CreateRoom = () => {
         } catch (error) {
             console.log('error',error)
         }
-
-
-
-
-
     }
 
     return (
@@ -113,7 +107,7 @@ export const CreateRoom = () => {
             <main>
                 <div className='flex flex-col md:flex-row'>
                     <Sidebar/>
-                    <section>
+                    <section className='w-full'>
                         <div id="main" className="main-content flex-1 bg-white mt-12 md:mt-2 pb-24 md:pb-5">
                             <div className="bg-gray-800 pt-3">
                                 <div className="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
@@ -172,7 +166,6 @@ export const CreateRoom = () => {
                                 {loading ? <Loader/> : <button onClick={create} className="text-blue-900 border border-blue-900 hover:bg-blue-900 hover:text-white active:bg-blue-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Créer</button> } 
                                 {success && <p className='font-thin text-green-600'>{success}</p>}
                                 {errorApi && <p className='font-thin text-red-600'>{errorApi}</p>}
-
                             </div>
                         </div>
                     </section>

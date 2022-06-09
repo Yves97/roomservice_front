@@ -41,7 +41,38 @@ export const createRoom = async (name,description,ranking,price,image,token) => 
             'Authorization' : `Bearer ${token}`
         }
     }
-
     const response = await fetch(routeApi,options)
     return await response    
+}
+
+export const updateRoom = async (name,description,price,ranking,image,token) => {
+    const routeApi = `${baseUrl}suites`
+    const DATA = new FormData()
+    DATA.append('name',name)
+    DATA.append('price',price)
+    DATA.append('description',description)
+    DATA.append('ranking',ranking)
+    DATA.append('image',image)
+    const options = {
+        method : 'PATCH',
+        body : DATA,
+        headers : {
+            'Authorization' : `Bearer ${token}`
+        }
+    } 
+    const response = await fetch(routeApi,options)
+    return await response    
+}
+
+export const deleteRoom = async (id,token)=> {
+    const routeApi = `${baseUrl}suites/${id}`
+
+    const options = {
+        method : 'DELETE',
+        headers : {
+            'Authorization' : `Bearer ${token}`
+        }
+    }
+    const response = await fetch(routeApi,options)
+    return await response
 }

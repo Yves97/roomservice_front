@@ -15,7 +15,7 @@ import { Index } from './views/dashboard/Index';
 import {Admin} from './views/dashboard/home/Admin';
 import {DashboardRooms} from './views/dashboard/rooms/Rooms'
 import {Details} from './views/dashboard/rooms/Details'
-import {Update} from './views/dashboard/rooms/Update'
+import {UpdateRooms} from './views/dashboard/rooms/Update'
 import { CreateRoom } from './views/dashboard/rooms/Create';
 import {Reservations} from './views/dashboard/reservations/Reservations'
 
@@ -45,6 +45,7 @@ function App() {
           <Route path='/dashboard/rooms/:id/details' exact component={Details}/>
           <Route path='/dashboard/reservations' exact component={Reservations} />
           <Route path='/dashboard/rooms/create' exact component={CreateRoom}/>
+          <Route path='/dashboard/rooms/:id/update' exact component={UpdateRooms} />
       </ProtectedRoutes>
       <Route path='*' exact component={NotFound} />
     </Switch>
