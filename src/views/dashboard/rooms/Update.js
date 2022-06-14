@@ -54,8 +54,6 @@ export const UpdateRooms = () => {
           setDecription(data.description)
           setImage(data.image)
           setRanking(data.ranking)
-
-          
         }else{
           const error = await response.json()
           setError(error.message)
@@ -172,7 +170,7 @@ export const UpdateRooms = () => {
                                 {errorImage && <p className='font-thin text-sm text-red-600 italic'>Champ à remplir*</p>}
                             </div>
                         </div>
-                        {loading ? <Loader/> : <button onClick={update} className="text-blue-900 border border-blue-900 hover:bg-blue-900 hover:text-white active:bg-blue-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Créer</button> } 
+                        {loading ? <Loader/> : <button onClick={update} className="text-blue-900 border border-blue-900 hover:bg-blue-900 hover:text-white active:bg-blue-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Mettre à jour</button> } 
                         {success && <p className='font-thin text-green-600'>{success}</p>}
                         {errorApi && <p className='font-thin text-red-600'>{errorApi}</p>}
                     </div>

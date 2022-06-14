@@ -18,7 +18,7 @@ import {Details} from './views/dashboard/rooms/Details'
 import {UpdateRooms} from './views/dashboard/rooms/Update'
 import { CreateRoom } from './views/dashboard/rooms/Create';
 import {Reservations} from './views/dashboard/reservations/Reservations'
-
+import {ReservationDetails} from './views/dashboard/reservations/ReservationDetails'
 
 
 function App() {
@@ -44,6 +44,7 @@ function App() {
           <Route path='/dashboard/rooms' exact component={DashboardRooms}/>
           <Route path='/dashboard/rooms/:id/details' exact component={Details}/>
           <Route path='/dashboard/reservations' exact component={Reservations} />
+          <Route path='/dashboard/reservations/:id' exact component={ReservationDetails} />
           <Route path='/dashboard/rooms/create' exact component={CreateRoom}/>
           <Route path='/dashboard/rooms/:id/update' exact component={UpdateRooms} />
       </ProtectedRoutes>

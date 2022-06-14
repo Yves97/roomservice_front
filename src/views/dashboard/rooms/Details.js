@@ -74,12 +74,10 @@ export const Details = () => {
               </div>
               <div>
                   {renderDetails()}
-                  
               </div>
             </div>
           </section>
         </div>
-       
       </main>
     </div>
   )
