@@ -61,6 +61,7 @@ function NotFound(){
 }
 
 const ProtectedRoutes = ({whoIsConnected,children}) => {
+  console.log('whois connetecd',whoIsConnected)
     if(whoIsConnected !== 'ADMIN'){
       return <Redirect to='/' />
     }

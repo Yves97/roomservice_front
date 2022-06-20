@@ -18,16 +18,17 @@ export const userLogin = (data) => {
             dispatch(loginStart())
             const response = await loginUser(data)
             if(response.ok){
-                dispatch(setUserAuth(true))
                 const data = await response.json()
+                console.log('data=',data)
                 dispatch(setToken(data.accessToken))
                 const decodedToken = jwt_decode(data.accessToken)
-                console.log(decodedToken)
+                console.log('decoded token',decodedToken)
                 dispatch(setUser(decodedToken))
                 dispatch(loginSuccess(true))
-                dispatch(checkLoginState(decodedToken.exp))
                 dispatch(setExpireToken(decodedToken.exp))
                 dispatch(loginFailed(null))
+                dispatch(setUserAuth(true))
+                // dispatch(checkLoginState(decodedToken.exp))
             }else{
                 const error = await response.json()
                 // dispatch(setAuthenticated(false))
@@ -42,20 +43,30 @@ export const userLogin = (data) => {
     }
 }
 
+/* 
 export const checkLoginState = (expirationTime) => {
+    console.log('expiration time',expirationTime)
     return dispatch => {
-        setTimeout(()=>{
-            dispatch(logout())
-            // dispath logout method
-        },expirationTime*1000)
+    try {
+            setTimeout(()=>{
+                console.log('triggered logout')
+                dispatch(logout())
+                // dispath logout method
+            },expirationTime*1000)
+    } catch (error) {
+        
+    }
     }
 }
+*/
 
 export const trySignUp =  () => {
     console.log('in checkLoginState')
     return  async (dispatch,getState) =>  {
-        const { token,expToken } = getState().auth
+        const {token , expToken } = getState().auth
+        console.log(token,expToken)
         if(!token){
+            console.log('token expire')
             dispatch(logout())
         }
         else {

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import { useSelector } from 'react-redux'
-import { getRooms } from '../../../services/rooms'
+import { getRooms ,getAllRooms } from '../../../services/rooms'
 import { deleteRoom } from '../../../services/rooms'
 
 import { AdminHeader } from '../../../components/adminHeader/adminHeader'
@@ -26,7 +26,7 @@ export const DashboardRooms = () => {
         async function rooms(){
             try {
                 setLoading(true)
-                const response = await getRooms()
+                const response = await getAllRooms(token)
                 if(response.ok){
                     const data = await response.json()
                     setRooms(data)
@@ -95,8 +95,9 @@ export const DashboardRooms = () => {
                                         </div>
                                         <div className="flex-1 text-right">
                                             <h2 className="font-bold text-gray-600">{item.name}</h2>
-                                        <p className="font-bold ">{item.price} $ </p>
-                                        <p className="font-thin ">{item.ranking} </p>
+                                            <p className="font-bold ">{item.price} $ </p>
+                                            <p className="font-thin ">{item.ranking} </p>
+                                            {item.status !== 1 ? <span class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Bloqué</span> : <span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">Disponible</span> }
                                         </div>
                                     </div>
                                     <div className='text-right'>

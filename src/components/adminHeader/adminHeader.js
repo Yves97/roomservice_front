@@ -53,7 +53,7 @@ export const AdminHeader = () => {
                                     <a href="#" className="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i className="fa fa-user fa-fw"></i> Profile</a>
                                     <a href="#" className="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i className="fa fa-cog fa-fw"></i> Paramètres</a>
                                     <div className="border border-gray-800"></div>
-                                    <a onClick={logoutUser} className="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block cursor-pointer"><i className="fas fa-sign-out-alt fa-fw"></i>Se déconnecter</a>
+                                    <a onClick={() =>  logoutUser()} className="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block cursor-pointer"><i className="fas fa-sign-out-alt fa-fw"></i>Se déconnecter</a>
                                 </div>
                             </div>
                         </li>

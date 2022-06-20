@@ -13,6 +13,19 @@ export const getRooms = async () => {
     return await response
 }
 
+export const getAllRooms = async (token) => {
+    const rootApi = `${baseUrl}suites/all`
+    const options = { 
+        method : 'GET',
+        headers : {
+            'Content-Type' : 'application/json',
+            'Authorization' : `Bearer ${token}`
+        }
+    }
+    const response = await fetch(rootApi,options)
+    return await response
+}
+
 export const getRoom = async (id) =>{
     const rootApi = `${baseUrl}suites/${id}`
     const options = {
