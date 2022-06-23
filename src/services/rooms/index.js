@@ -38,7 +38,7 @@ export const getRoom = async (id) =>{
     return await response
 }
 
-export const createRoom = async (name,description,ranking,price,image,token) => {
+export const createRoom = async (name,description,ranking,price,image,token,status) => {
     const routeApi = `${baseUrl}suites`
     const DATA = new FormData()
     DATA.append('name',name)
@@ -46,6 +46,7 @@ export const createRoom = async (name,description,ranking,price,image,token) => 
     DATA.append('description',description)
     DATA.append('ranking',ranking)
     DATA.append('image',image)    
+    DATA.append('status',status)
 
     const options = {
         method : 'POST',

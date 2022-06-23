@@ -7,3 +7,5 @@ export const LOGIN_START = "LOGIN_START"
 // export const LOGIN_ERROR = "LOGIN_ERROR"
 export const LOGIN_FAILED = "LOGIN_FAILED"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+
+export const INIT_ERRORS = "INIT_ERRORS"

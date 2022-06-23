@@ -5,7 +5,7 @@ import { AdminHeader } from '../../../components/adminHeader/adminHeader'
 import { Sidebar } from '../../../components/sidebar/sidebar'
 import { Loader } from '../../../components/loader/Loader'
 
-import { rankingRoom } from '../../../helpers/common'
+import { rankingRoom , statusRoom } from '../../../helpers/common'
 import { isEmptyOrWhiteSpace } from '../../../helpers/validators'
 
 import { createRoom } from '../../../services/rooms'
@@ -21,6 +21,9 @@ export const CreateRoom = () => {
 
     const [ranking,setRanking] = useState('')
     const [errorRanking,setErrorRanking] = useState(false)
+
+    const [status,setStatus] = useState('')
+    const [errorStatus,setErrorStatus] = useState(false)
 
     const [description,setDecription] = useState('')
     const [errorDesc,setErrorDesc] = useState(false)
@@ -55,6 +58,11 @@ export const CreateRoom = () => {
             }else{
                 setErrorRanking(false)
             }
+            if(isEmptyOrWhiteSpace(status)){  
+                return setErrorStatus(true)
+            }else{
+                setErrorStatus(false)
+            }
     
             if(isEmptyOrWhiteSpace(description)){  
                 return setErrorDesc(true)
@@ -69,14 +77,14 @@ export const CreateRoom = () => {
             }
             
             setLoading(true)
-
             const response = await createRoom(
                 name,
                 description,
                 ranking,
                 price,
                 image,
-                token
+                token,
+                status
             )
             if(response.ok){
                 const data = await response.json()
@@ -87,6 +95,7 @@ export const CreateRoom = () => {
                 setDecription('')
                 setImage()
                 setRanking('')
+                setStatus('')
                 setLoading(false)
             
             }else{
@@ -145,7 +154,19 @@ export const CreateRoom = () => {
                                         })}
                                     </select>
                                     {errorRanking && <p className='text-sm font-thin text-red-600 italic'>Champ à remplir*</p>}
-
+                                </div>
+                                <div className='w-full mb-4'>
+                                    <p className='font-thin text-sm'>Status</p>
+                                    <select  id="cities" className='px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full pr-10' value={status} onChange={(e) => setStatus(e.target.value)}>
+                                        {statusRoom.map((item,index)=>{
+                                            return (
+                                                <React.Fragment key={index}>
+                                                    <option value={item.value}>{item.slug}</option>
+                                                </React.Fragment>
+                                            )
+                                        })}
+                                    </select>
+                                    {errorStatus && <p className='text-sm font-thin text-red-600 italic'>Champ à remplir*</p>}
                                 </div>
                                 <div className='w-full'>
                                     <div className="relative flex w-full flex-wrap items-stretch mb-3">

@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import {useHistory,Redirect} from 'react-router-dom'
 import { useDispatch ,useSelector } from 'react-redux';
 import { Header } from "../../components/header/header";
@@ -7,9 +7,7 @@ import { Loader } from '../../components/loader/Loader';
 import Img from '../../assets/images/lobby-g97f686da4_1920.jpg'
 
 import { validateEmail, isEmptyOrWhiteSpace } from '../../helpers/validators';
-import { userLogin } from '../../store/actions/auth';
-
-
+import { userLogin , initErrors } from '../../store/actions/auth';
 
 export const Login = () => {
 
@@ -27,8 +25,11 @@ export const Login = () => {
     const isAuth = useSelector((state) => state.auth.isAuth)
     const pending = useSelector((state) => state.auth.pending)
     const errors = useSelector((state) => state.auth.errors)
-
     
+    useEffect(()=>{
+        dispatch(initErrors())
+    },[])
+
     const signIn = async (e) => {
       e.preventDefault()
       if(!validateEmail(email)){
@@ -50,14 +51,11 @@ export const Login = () => {
           password
         }
         await dispatch(userLogin(data))
-        
         // if(isAuth){
         //     console.log('login success')
         //     return history.push('/')
         //   // redirect to home
         // }
-        
-        
       } catch (error) {
         console.log(error)
       }
@@ -88,7 +86,7 @@ export const Login = () => {
                         {errorEmail && <p className='italic text-red-600'>Remplir ce champ*</p>}
                     </div>
                     <div className="relative flex w-full flex-wrap items-stretch mb-3">
-                        <input value={password} onChange={e => setPassword(e.target.value)} type="password" placeholder="Mot de passe" className="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full pr-10"/>
+                        <input value={password} onChange={ e => setPassword(e.target.value)} type="password" placeholder="Mot de passe" className="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full pr-10"/>
                         <span className="z-10 h-full leading-snug font-normal text-center text-slate-300 absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
                             <i className="fas fa-lock"></i>
                         </span>
@@ -104,14 +102,12 @@ export const Login = () => {
             <Footer/>
         </>
         )
-
     }
 
     return (
         <>
             {renderLogin()}
         </>
-       
     )
 }
 

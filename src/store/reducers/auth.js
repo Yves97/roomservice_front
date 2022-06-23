@@ -49,6 +49,11 @@ export const authReducer = (state = initialState,action) => {
                 pending : false,
                 success : action.success,
             }
+        case actionTypes.INIT_ERRORS:
+            return {
+                ...state,
+                errors : null
+            }
         default:
             return state
     }

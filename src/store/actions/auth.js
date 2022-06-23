@@ -11,6 +11,7 @@ export const loginStart = () => ({type : actionTypes.LOGIN_START})
 export const loginFailed = error => ({type: actionTypes.LOGIN_FAILED,error})
 export const loginSuccess = success => ({type : actionTypes.LOGIN_SUCCESS,success})
 export const setUserAuth = value => ({type : actionTypes.SET_AUTHENTICATED,value})
+export const initErrors = () => ({type : actionTypes.INIT_ERRORS})
 
 export const userLogin = (data) => {
     return async (dispatch) =>{

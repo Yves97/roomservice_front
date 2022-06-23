@@ -10,3 +10,14 @@ export const rankingRoom = [
     "ECONOMIC",
     "MEDIUM"
 ]
+
+export const statusRoom = [
+    {
+        slug : 'Bloqué',
+        value : 0
+    },
+    {
+        slug : 'Disponible',
+        value : 1
+    },
+]
